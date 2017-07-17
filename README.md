@@ -6,8 +6,7 @@ The chart was based on the answer given to [an R Stack Overflow question](https:
 
 # Example
 
-![Example spiral heatmap on bl.ocks](/img/spiral-heapmap.png)
-
+[<img alt="Spiral heatmap" src="/img/spiral-heatmap.png">](https://bl.ocks.org/tomshanley/4080b28445785939b3f043b8c5b63e22)
 
 ----------
 
