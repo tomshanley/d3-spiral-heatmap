@@ -31,7 +31,8 @@ function spiralHeatmap () {
       // Stores the x/y coordinates on the data
       updatePathData(data)
 
-      let thisSelection = d3.select(this);
+      let thisSelection = d3.select(this).append("g")
+        .attr("class", "spiral-heatmap");
 
       var segmentLabelsG = thisSelection.selectAll(".segment-label")
                 .data(segmentLabels)
