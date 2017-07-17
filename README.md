@@ -1,8 +1,12 @@
 # d3-spiral-heatmap
 
-A [reusable D3 chart](https://bost.ocks.org/mike/chart/) for creating SVG spiral heatmaps .
+A [reusable D3 chart](https://bost.ocks.org/mike/chart/) for creating SVG spiral heatmaps.
 
 The chart was based on the answer given to [an R Stack Overflow question](https://stackoverflow.com/questions/41603341/spiral-barplot-using-ggplot-coord-polar-condegram).
+
+# Example
+
+![Example spiral heatmap on bl.ocks](/img/spiral-heapmap.png)
 
 
 ----------

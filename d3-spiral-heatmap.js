@@ -5,7 +5,7 @@
 // segmentsPerCoil: a 'coil' is one revolution of the spiral.  This sets how many segments (or arcs) you want per coil. Typically this would
 //                  be set according to the periodicity of the data. For example, 12 for months per year, 24 for hours per day, etc
 // coilPadding: the proportion (0 to 1) of the coil width that is used for padding between coils. Useful for making the spiral very noticeable
-//
+// segmentLabelsData: an array of labels that will be placed around the circumference of the spiral
 
 function spiralHeatmap () {
   
@@ -14,7 +14,7 @@ function spiralHeatmap () {
 
   // All options that are accessible to caller
   // Default values
-  var radius = 250 //pixels
+  var radius = 250 
   var holeRadiusProportion = 0.3 //proportion of radius
   var segmentsPerCoil = 12 //assuming months per year
   var coilPadding = 0 //no padding
