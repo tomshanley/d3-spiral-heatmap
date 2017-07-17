@@ -1,0 +1,110 @@
+<head>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+    <script src="d3-spiral-heatmap.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Catamaran', sans-serif;
+            margin: 20px;
+            top: 20px;
+            right: 20px;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        line {
+            stroke: #E9E9E9;
+        }
+
+        .year-label {
+            fill: #FFF;
+        }
+
+        .arc path {
+            stroke: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Spiral heatmap</h1>
+    <p>An example of a resuable spiral heatmap.</p>
+
+    <div id="charts"></div>
+    <div id="legend"></div>
+
+    <script>
+        //SVG dimensions
+        const chartWidth = 300
+        const chartHeight = chartWidth
+        const chartRadius = chartWidth / 2
+        const margin = { "top": 40, "bottom": 40, "left": 40, "right": 40 }
+
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        //Colour scale
+        var colour = d3.scaleSequential(d3.interpolateRdYlGn)
+
+        //Load the data, nest, sort and draw charts
+        d3.csv("data.csv", convertTextToNumbers, function (error, data) {
+            if (error) { throw error; };
+
+            //ENSURE THE DATA IS SORTED CORRECTLY, IN THIS CASE BY YEAR AND MONTH
+            //THE SPIRAL WILL START IN THE MIDDLE AND WORK OUTWARDS
+
+            var nestedData = d3.nest()
+                .key(function (d) { return d.car_type; })
+                .sortValues(function (a, b) { return a.year - b.year || a.month_number - b.month_number; })
+                .entries(data);
+
+            nestedData.forEach(function (chartData) {
+
+                //colour.domain(d3.extent(chartData.values, function (d) { return d.diff_to_avg; }));
+                colour.domain(d3.extent(chartData.values, function (d) { return d.value; }));
+
+                //set the options for the sprial heatmap
+                let heatmap = spiralHeatmap()
+                    .radius(chartRadius)
+                    .holeRadiusProportion(0.2)
+                    .segmentsPerCoil(12)
+                    .coilPadding(0.1)
+                    .segmentLabels(months)
+
+                //CREATE SVG AND A G PLACED IN THE CENTRE OF THE SVG
+                const div = d3.select("#charts").append("div")
+
+                div.append("p")
+                    .text(chartData.key)
+
+                const svg = div.append("svg")
+                    .attr("width", chartWidth + margin.left + margin.right)
+                    .attr("height", chartHeight + margin.top + margin.bottom);
+
+                const g = svg.append("g")
+                    .attr("transform", "translate("
+                    + (margin.left + chartRadius)
+                    + ","
+                    + (margin.top + chartRadius) + ")");
+
+                g.datum(chartData.values)
+                    .call(heatmap);
+
+                g.selectAll(".arc").selectAll("path")
+                    .style("fill", function (d) { return colour(d.value); })
+
+            })
+        })
+
+        function convertTextToNumbers(d) {
+            d.value = +d.value;
+            d.month_number = +d.month_number;
+            d.year = +d.year;
+            d.diff_to_avg = +d.diff_to_avg - 1;
+            return d;
+        };
+    </script>
+</body>
