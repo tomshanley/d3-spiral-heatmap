@@ -14,6 +14,14 @@ A spiral heatmap is useful for displaying periodic datasets, and you want a cont
 
 # Usage
 
+## Pre-requesisites
+
+The chart uses [version 4 of D3.js](https://github.com/d3/d3/), which must be loaded.
+
+The dataset must be sorted before calling the chart. The heatmap will be created from the centre of the spiral, circling outwards.
+
+## API
+
 var chart = **spiralHeatmap()**
 
 Creates a new instance of the spiral heatmap with default settings.
