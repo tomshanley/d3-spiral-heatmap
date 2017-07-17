@@ -4,6 +4,8 @@ A [reusable D3 chart](https://bost.ocks.org/mike/chart/) for creating SVG spiral
 
 The chart was based on the answer given to [an R Stack Overflow question](https://stackoverflow.com/questions/41603341/spiral-barplot-using-ggplot-coord-polar-condegram).
 
+A spiral heatmap is useful for displaying periodic datasets, and you want a continuous series without visual breaks at certain points (for example at the end and beginning of the calendar year). 
+
 # Example
 
 [<img alt="Spiral heatmap" src="/img/spiral-heatmap.png">](https://bl.ocks.org/tomshanley/4080b28445785939b3f043b8c5b63e22)
