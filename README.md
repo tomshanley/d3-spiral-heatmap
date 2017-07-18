@@ -57,3 +57,7 @@ The proportion (0 to 1) of the coil width that will be used as padding between c
 *chart*.**segmentLabels**(array)
 
 An array of labels that will be placed around the circumference of the spiral. Typically you would have the same number of values in the array as segmentsPerCoil. Default is an empty array (no labels).
+
+*chart*.**coilLabels**(fieldname)
+
+The field in the data that will label each coil. The label will have the class ".coil-label" for selection and styling. Defaults to null (no labels).

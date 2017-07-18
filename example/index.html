@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
-    <script src="d3-spiral-heatmap.js"></script>
+    <script src="..\d3-spiral-heatmap.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
 
     <style>
@@ -19,8 +19,9 @@
             stroke: #E9E9E9;
         }
 
-        .year-label {
-            fill: #FFF;
+        .coil-label {
+            fill: #000;
+            font-size: 12px;
         }
 
         .arc path {
@@ -39,13 +40,13 @@
 
     <script>
         //SVG dimensions
-        const chartWidth = 300
+        const chartWidth = 500
         const chartHeight = chartWidth
         const chartRadius = chartWidth / 2
         const margin = { "top": 40, "bottom": 40, "left": 40, "right": 40 }
 
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+        
         //Colour scale
         var colour = d3.scaleSequential(d3.interpolateRdYlGn)
 
@@ -72,7 +73,8 @@
                     .holeRadiusProportion(0.2)
                     .segmentsPerCoil(12)
                     .coilPadding(0.1)
-                    .segmentLabels(months)
+                    .segmentLabel(months)
+                    .coilLabel("year")
 
                 //CREATE SVG AND A G PLACED IN THE CENTRE OF THE SVG
                 const div = d3.select("#charts").append("div")
