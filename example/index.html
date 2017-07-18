@@ -45,13 +45,15 @@
         const chartRadius = chartWidth / 2
         const margin = { "top": 40, "bottom": 40, "left": 40, "right": 40 }
 
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let dateParse = d3.timeParse("%d/%m/%Y")
+        let yearFormat = d3.timeFormat("%Y")
+        let monthFormat = d3.timeFormat("%b")
         
         //Colour scale
         var colour = d3.scaleSequential(d3.interpolateRdYlGn)
 
         //Load the data, nest, sort and draw charts
-        d3.csv("data.csv", convertTextToNumbers, function (error, data) {
+        d3.csv("data2.csv", convertTextToNumbers, function (error, data) {
             if (error) { throw error; };
 
             //ENSURE THE DATA IS SORTED CORRECTLY, IN THIS CASE BY YEAR AND MONTH
@@ -59,21 +61,20 @@
 
             var nestedData = d3.nest()
                 .key(function (d) { return d.car_type; })
-                .sortValues(function (a, b) { return a.year - b.year || a.month_number - b.month_number; })
+                .sortValues(function (a, b) { return a.date - b.date; })
                 .entries(data);
 
             nestedData.forEach(function (chartData) {
 
-                //colour.domain(d3.extent(chartData.values, function (d) { return d.diff_to_avg; }));
                 colour.domain(d3.extent(chartData.values, function (d) { return d.value; }));
 
                 //set the options for the sprial heatmap
                 let heatmap = spiralHeatmap()
                     .radius(chartRadius)
                     .holeRadiusProportion(0.2)
-                    .segmentsPerCoil(12)
+                    .arcsPerCoil(12)
                     .coilPadding(0.1)
-                    .segmentLabel(months)
+                    .arcLabel("month")
                     .coilLabel("year")
 
                 //CREATE SVG AND A G PLACED IN THE CENTRE OF THE SVG
@@ -103,9 +104,9 @@
 
         function convertTextToNumbers(d) {
             d.value = +d.value;
-            d.month_number = +d.month_number;
-            d.year = +d.year;
-            d.diff_to_avg = +d.diff_to_avg - 1;
+            d.date = dateParse(d.date);
+            d.year = yearFormat(d.date);
+            d.month = monthFormat(d.date);
             return d;
         };
     </script>
