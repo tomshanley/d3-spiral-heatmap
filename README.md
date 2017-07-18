@@ -26,9 +26,9 @@ var chart = **spiralHeatmap()**
 
 Creates a new instance of the spiral heatmap with default settings.
 
-When the chart is called on a selection, a spiral heatmap is created within a "g" element with the class ".spiral-heatmap".
+When the chart is called on a selection with data attached, a spiral heatmap is created within a "g" element with the class ".spiral-heatmap".
 
-    selection.call(chart)
+    selection.datum(data).call(chart)
 
 Each arc of the spiral is path element contained within a "g" element with the class ".arc", which can be selected and styled after it is created. For example:
 
