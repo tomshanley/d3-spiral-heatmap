@@ -53,7 +53,7 @@
         var colour = d3.scaleSequential(d3.interpolateRdYlGn)
 
         //Load the data, nest, sort and draw charts
-        d3.csv("data2.csv", convertTextToNumbers, function (error, data) {
+        d3.csv("data.csv", convertTextToNumbers, function (error, data) {
             if (error) { throw error; };
 
             //ENSURE THE DATA IS SORTED CORRECTLY, IN THIS CASE BY YEAR AND MONTH
