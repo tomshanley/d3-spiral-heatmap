@@ -28,7 +28,7 @@ function spiralHeatmap () {
 
       var arcLabelsArray = []
 
-      for (var i = 1; i <= arcsPerCoil; i++) {
+      for (var i = 0; i < arcsPerCoil; i++) {
         arcLabelsArray.push(i)
       }
 
