@@ -117,7 +117,8 @@ function spiralHeatmap () {
       })
 
       // create coil labels on the first arc of each coil
-      coilLabels = arcs
+      if (coilLabel != '') {
+        coilLabels = arcs
         .filter(function (d) {
           return d.arcNumber == 0
         })
@@ -157,6 +158,7 @@ function spiralHeatmap () {
         .text(function (d) {
           return d[coilLabel]
         })
+      }
     })
 
     function updatePathData (data) {
