@@ -71,12 +71,12 @@ function spiralHeatmap () {
         .append('line')
         .attr('x2', function (d, i) {
           let lineAngle = i * arcAngle
-          let lineRadius = chartRadius + 10
+          let lineRadius = radius + 10
           return x(lineAngle, lineRadius)
         })
         .attr('y2', function (d, i) {
           let lineAngle = i * arcAngle
-          let lineRadius = chartRadius + 10
+          let lineRadius = radius + 10
           return y(lineAngle, lineRadius)
         })
 
@@ -166,7 +166,7 @@ function spiralHeatmap () {
       let arcAngle = 360 / arcsPerCoil
       let dataLength = data.length
       let coils = Math.ceil(dataLength / arcsPerCoil) // number of coils, based on data.length / arcsPerCoil
-      let coilWidth = chartRadius * (1 - holeRadiusProportion) / (coils + 1) // remaining chartRadius (after holeRadius removed), divided by coils + 1. I add 1 as the end of the coil moves out by 1 each time
+      let coilWidth = radius * (1 - holeRadiusProportion) / (coils + 1) // remaining radius (after holeRadius removed), divided by coils + 1. I add 1 as the end of the coil moves out by 1 each time
 
       data.forEach(function (d, i) {
         let coil = Math.floor(i / arcsPerCoil)
