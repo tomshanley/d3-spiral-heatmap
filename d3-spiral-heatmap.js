@@ -20,6 +20,7 @@ function spiralHeatmap () {
   var coilPadding = 0 // no padding
   var arcLabel = '' // no labels
   var coilLabel = '' // no labels
+  var startAngle = 0 //starts at 12 o'clock
 
   function chart (selection) {
     selection.each(function (data) {
@@ -225,7 +226,7 @@ function spiralHeatmap () {
       // change to clockwise
       let a = 360 - angle
       // start from 12 o'clock
-      a = a + 180
+      a = a + 180 - startAngle;
       return radius * Math.sin(a * radians)
     }
 
@@ -233,7 +234,7 @@ function spiralHeatmap () {
       // change to clockwise
       let a = 360 - angle
       // start from 12 o'clock
-      a = a + 180
+      a = a + 180 - startAngle;
       return radius * Math.cos(a * radians)
     }
 
@@ -275,6 +276,12 @@ function spiralHeatmap () {
   chart.coilLabel = function (value) {
     if (!arguments.length) return coilLabel
     coilLabel = value
+    return chart
+  }
+  
+  chart.startAngle = function (value) {
+    if (!arguments.length) return startAngle
+    startAngle = value
     return chart
   }
 
