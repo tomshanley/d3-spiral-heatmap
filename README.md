@@ -62,8 +62,6 @@ The field in the data that will label each segment of arcs in the spiral. The la
 
 The field in the data that will label each coil. The label will have the class ".coil-label" for selection and styling.  Defaults to no field (no labels).
 
-*chart*.**startAngle**(fieldname)
+*chart*.**startAngle**(int)
 
-The angle, in degrees starting from the 12 o'clock position, from which the first segment will be drawn.
-
-startAngle
+The angle, in degrees starting from the 12 o'clock position, from which the first segment will be drawn. Defaults to 0.
